@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import RampageFramework
 
 class ___VARIABLE_productName___ViewController: RPViewController {
-
-
+    
     @IBOutlet var presenter: ___VARIABLE_productName___View!
     let viewModel = ___VARIABLE_productName___ViewModel()
 

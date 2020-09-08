@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RampageFramework
 
 class ___VARIABLE_productName___View: RPPresenter {
     
