@@ -15,7 +15,8 @@ class ___VARIABLE_productName___View: RPPresenter {
     @IBOutlet weak var passText: UITextField!
     
     override func onStart(){
-        
+        // You can access viewController from here
+        viewController?.view?.backgroundColor = UIColor.red
     }
 
     @IBAction func clickLogin(_ sender: Any) {
