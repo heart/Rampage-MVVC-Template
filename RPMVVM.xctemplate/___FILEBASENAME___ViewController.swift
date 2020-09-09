@@ -16,7 +16,7 @@ class ___VARIABLE_productName___ViewController: RPViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewController = self
+        presenter.setup(viewController: self)
     }
 
     override func bind() {

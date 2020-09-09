@@ -14,6 +14,10 @@ class ___VARIABLE_productName___View: RPPresenter {
     @IBOutlet weak var userText: UITextField!
     @IBOutlet weak var passText: UITextField!
     
+    override func onStart(){
+        
+    }
+
     @IBAction func clickLogin(_ sender: Any) {
         let event = RPEvent(name: "login", data:
             [
