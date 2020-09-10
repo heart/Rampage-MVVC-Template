@@ -22,30 +22,27 @@ class ___VARIABLE_productName___ViewController: RPViewController {
     override func bind() {
         viewModel.watch {
             if $0 is ___VARIABLE_productName___Model {
-                print($0)
+                print($0, $1)
             }
         }
 
         viewModel.loading {
-            print($0)
+            print($0, $1)
         }
 
         presenter.event {
-            if($0.name == "login"){
-                if let loginData = $0.data as? [String: String]{
-                    
-                    let user = loginData["user"]
-                    let password = loginData["password"]
-                    
-                    self.callService(user: user, pass: password)
+            if($0.name == "sendMessage"){
+                if let eventData = $0.data as? [String: String]{
+                    let message = eventData["message"]
+                    self.callService(message: message)
                 }
-                
             }
         }
     }
 
-    func callService(user: String?, pass: String?) {
-        viewModel.exampleAPI(text1: user, text2: pass)
+    func callService(message: String?) {
+        let req = ___VARIABLE_productName___ViewModel.___VARIABLE_productName___ServiceRequest(identifier: 999, message: message)
+        viewModel.assign(request: req)
     }
 
 }

@@ -20,11 +20,8 @@ class ___VARIABLE_productName___View: RPPresenter {
     }
 
     @IBAction func clickLogin(_ sender: Any) {
-        let event = RPEvent(name: "login", data:
-            [
-                "user": userText.text,
-                "password": passText.text
-            ])
+        let data = ["message": "Hello, World!"]
+        let event = RPEvent(name: "sendMessage", data: data)
         dispatch(event: event)
     }
     

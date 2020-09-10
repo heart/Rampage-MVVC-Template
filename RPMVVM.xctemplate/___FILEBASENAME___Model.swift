@@ -11,5 +11,5 @@ import RampageFramework
 
 struct ___VARIABLE_productName___Model: RPModel  {
     var error: APIError?
-    
+    var message:String?
 }
