@@ -15,6 +15,8 @@ class ___VARIABLE_productName___View: RPPresenter {
     @IBOutlet weak var passText: UITextField!
     
     override func onStart(){
+        loadLanguage(file: "___VARIABLE_productName___-lang.json")
+        
         // You can access viewController from here
         viewController?.view?.backgroundColor = UIColor.red
     }
