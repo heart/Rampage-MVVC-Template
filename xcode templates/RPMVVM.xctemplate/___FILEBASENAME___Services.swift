@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RampageFramework
+import RampageMVVM
 
 class ___VARIABLE_productName___Services {
     

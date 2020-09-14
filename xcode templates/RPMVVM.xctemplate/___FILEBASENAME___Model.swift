@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import RampageFramework
+import RampageMVVM
 
 struct ___VARIABLE_productName___Model: RPModel  {
     var error: APIError?

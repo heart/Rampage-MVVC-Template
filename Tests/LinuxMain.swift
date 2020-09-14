@@ -1,7 +1,7 @@
 import XCTest
 
-import RampageMVVCTests
+import RampageMVVMTests
 
 var tests = [XCTestCaseEntry]()
-tests += RampageMVVCTests.allTests()
+tests += RampageMVVMTests.allTests()
 XCTMain(tests)
