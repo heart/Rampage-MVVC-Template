@@ -51,10 +51,29 @@ rm -rf RampageMVVM-iOS-Swift
 ![New Group](https://raw.githubusercontent.com/heart/RampageMVVM-iOS-Swift/master/images/newfile.png)
 เมื่อติดตั้ง Template แล้ว ท่านจะมี Template ชื่อ RPMVVM
 
-กด Next และตั้งช่ื่อ Module Name ว่า Home แล้วกด Next 
+กด Next และตั้งช่ือ Module Name ว่า Home แล้วกด Next 
 
 จะได้ไฟล์ทั้งหมด 7 ไฟล์ดังภาพนี้
 ![New Group](https://raw.githubusercontent.com/heart/RampageMVVM-iOS-Swift/master/images/home.png)
+
+# Xcode 11 กับ SceneDelegate
+ใน xCode 11 หลังจากการมี Swift UI เมื่อสร้างโปรเจคใหม่ เราจะมีคลาสเพิ่มขึ้นมา ชื่อว่า SceneDelegate
+เราจะเปลี่ยนให้ เรียก HomeViewController ขึ้นมาแสดง แทนที่จะโหลด Storyboard ได้ โดยการแก้ไขโค้ดของ SceneDelegate.swift
+
+## แก้ไข SceneDelegate.swift ที่ฟังชั่น scene:willConnectTo ดังนี้
+```swift
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+
+        let home = HomeViewController()
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.rootViewController = home
+        window?.makeKeyAndVisible()
+    }
+```
+
 
 ## อธิบายโครงสร้าง การทำงาน
 
