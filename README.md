@@ -56,4 +56,51 @@ rm -rf RampageMVVM-iOS-Swift
 จะได้ไฟล์ทั้งหมด 7 ไฟล์ดังภาพนี้
 ![New Group](https://raw.githubusercontent.com/heart/RampageMVVM-iOS-Swift/master/images/home.png)
 
-RPViewController
+## อธิบายโครงสร้าง การทำงาน
+
+![New Group](https://raw.githubusercontent.com/heart/RampageMVVM-iOS-Swift/master/images/structure.png)
+
+### HomeViewController.swift
+HomeViewController จะ สืบทอดมาจากคลาส RPViewController
+เมื่อเริ่มทำงาน มันจะมองหาไฟล์ XIB ที่มีชื่อเดียวกับคลาส และโหลดไฟล์นั้น ขึ้นมาเป็น UI interface ของหน้านี้ โดยอัตโนมัติ
+HomeViewController จะเป็นผู้ประสานงาน ระหว่าง View และ ViewModel
+
+### HomeViewController.xib
+HomeViewController.xib เป็น UI ของ HomeViewController.swift ที่จะถูกโหลดขึ้นมาอัตโนมัติ
+
+### HomeView.swift
+View จะมีหน้าที่ ดูแล UI เท่านั้น และทำงานกับการ interfactive ของ User 
+เมื่อ User ต้องการอะไร ก็จะทำการส่ง Event ด้วยคำสั่ง dispatch ไปยัง HomeViewController ให้รับหน้าที่ต่อ
+
+ตัวอย่างการ dispatch 
+```swift
+@IBAction func clickLogin(_ sender: Any) {
+    let data = ["message": "Hello, World!"]
+    let event = RPEvent(name: "sendMessage", data: data)
+    dispatch(event: event)
+}
+```
+View ควรทำงาน ด้วยตัวเองได้โดยสมบูรณ์ จนกว่าจะต้องการ เรียกข้อมูลเพิ่ม จึง dispatch ออกไป
+ทุกๆการ dispatch ช่วยให้เราทราบว่า View นี้ มี input จาก User ทั้งหมด กี่ครั้ง อะไรบ้าง
+
+### HomeViewModel.swift
+ViewModel เป็นคลาสที่จะจัดการข้อมูลที่ส่งออกไป และนำข้อมูลกลับมาแสดงผล บนหน้า View
+โดยทีี่ ViewModel จะช่วยให้เราทราบว่า มีงานที่ต้องเรียกข้อมูลออกไป กี่ประเภทบ้าง
+
+Rampage ได้ออกแบบให้ ใน HomeService.swift ต้องเรียก API เป็น Synchronous เสมอเพื่อให้ ViewModel สะดวกต่อการ
+เรียก API หลายตัวประกอบกันได้ ในลักษณะ Async Await ในภาษาอื่น
+
+โดยที่ ViewModel จะใช้ RP.async เพื่อ ให้การเรียก Service ทำงานบน Background Mode 
+และประกอบข้อมูลเข้าด้วยกัน ให้ง่ายต่อการนใช้งาน
+และเมื่อทำงานจบ ก็จะเรียกใช้ RP.main เพื่อโยนการทำงานและข้อมูล กลับไปทำงานบน Thread หลัก
+
+### HomeServices.swift 
+มีหน้าที่ ติดต่อไปยัง Web Service ใดๆ เช่น Rest API 
+และจะเป็นคลาสที่ ทำงานกับ JSON เมื่อได้รับ Response แล้ว ให้ทำการแปลง JSON ให้เป็น Model ที่นี่
+และ Return กลับไปให้ ViewModel
+
+### HomeModel.swift
+เป็น Model ที่จะถือข้อมูล ของ API ที่ถูกเรียกใช้งาน
+
+
+
