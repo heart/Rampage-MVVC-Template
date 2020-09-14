@@ -68,7 +68,7 @@ rm -rf RampageMVVM-iOS-Swift
 1. เลือก Branch Master (ใช้ master ก่อนในระหว่างพัฒนา)
 
 ### สร้าง Group ขึ้นมาใหม่ โดยที่ Group นี้จะหมายถึง หน้าแอพ 1 หน้า ไฟล์ทั้งหมดที่เกี่ยวข้อง จะเก็บอยู่ที่นี่ ยกตัวอย่างเช่น สร้าง Group ชื่อ Home
-![New Group](https://raw.githubusercontent.com/heart/RampageMVVM-iOS-Swift/master/images/homegroup.png)
+![New Group](https://raw.githubusercontent.com/heart/RampageMVVM-iOS-Swift/master/images/homegroup1.png)
 
 ### คลิกเลือก Group Home สร้างไฟล์ใหม่ กด `Command + N`
 ![New Group](https://raw.githubusercontent.com/heart/RampageMVVM-iOS-Swift/master/images/newfile.png)
