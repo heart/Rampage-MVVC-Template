@@ -9,7 +9,7 @@
 import UIKit
 import RampageMVVM
 
-class ___VARIABLE_productName___Services {
+class ___VARIABLE_productName___Services: RPService {
     
     func exampleAPI(msg: String?) -> ___VARIABLE_productName___Model {
         var model = ___VARIABLE_productName___Model()
