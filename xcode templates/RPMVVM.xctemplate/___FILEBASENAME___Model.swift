@@ -9,7 +9,6 @@
 import Foundation
 import RampageMVVM
 
-struct ___VARIABLE_productName___Model: RPModel  {
-    var error: APIError?
-    var message:String?
+struct ___VARIABLE_productName___Model: RPModel, JSONModel  {
+    var json: JSON?
 }

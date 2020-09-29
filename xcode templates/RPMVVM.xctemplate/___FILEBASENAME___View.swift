@@ -23,7 +23,7 @@ class ___VARIABLE_productName___View: RPPresenter {
 
     @IBAction func clickLogin(_ sender: Any) {
         let data = ["message": "Hello, World!"]
-        let event = RPEvent(name: "sendMessage", data: data)
+        let event = RPEvent(name: "fetchMovieData", data: data)
         dispatch(event: event)
     }
     

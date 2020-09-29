@@ -14,15 +14,32 @@ class ___VARIABLE_productName___ViewController: RPViewController {
     @IBOutlet var presenter: ___VARIABLE_productName___View!
     let viewModel = ___VARIABLE_productName___ViewModel()
 
+    let exampleServiceID = UUID()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.setup(viewController: self)
     }
 
     override func bind() {
-        viewModel.watch {
-            if $0 is ___VARIABLE_productName___Model {
-                print($0, $1)
+        viewModel.onSuccess { model, req in
+            if req.identifier == self.exampleServiceID {
+                if let model = model as? ___VARIABLE_productName___Model{
+                    let movieName = model.json?["movie"].string ?? ""
+                    let firstName = model.json?["firstname"].string ?? ""
+                    let lastName = model.json?["lastname"].string ?? ""
+                    let description = model.json?["description"].string ?? ""
+
+                    print(movieName)
+                    print(lastName, firstName)
+                    print(description)
+                }
+            }
+        }
+
+        viewModel.onFail{ err, req in
+            if req.identifier == self.exampleServiceID {
+                print(err)
             }
         }
 
@@ -31,7 +48,7 @@ class ___VARIABLE_productName___ViewController: RPViewController {
         }
 
         presenter.event {
-            if($0.name == "sendMessage"){
+            if($0.name == "fetchMovieData"){
                 if let eventData = $0.data as? [String: String]{
                     let message = eventData["message"]
                     self.callService(message: message)
@@ -41,7 +58,7 @@ class ___VARIABLE_productName___ViewController: RPViewController {
     }
 
     func callService(message: String?) {
-        let req = ___VARIABLE_productName___ViewModel.___VARIABLE_productName___ServiceRequest(identifier: 999, message: message)
+        let req = ___VARIABLE_productName___ViewModel.___VARIABLE_productName___ServiceRequest(identifier: exampleServiceID, message: message)
         viewModel.assign(request: req)
     }
 
