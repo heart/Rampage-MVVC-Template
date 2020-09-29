@@ -13,6 +13,7 @@ public enum NetworkError: Error {
     case badURL
     case badQueryString
     case serverError(String, Int)
+    case timeOut
 }
 
 public struct HttpResponse {

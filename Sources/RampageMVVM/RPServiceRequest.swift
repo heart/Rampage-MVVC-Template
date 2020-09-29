@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol RPServiceRequest {
-    var identifier: Int { get }
+    var identifier: UUID { get }
 }
